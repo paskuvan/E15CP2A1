@@ -12,20 +12,29 @@
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a href="#">Link1</a></li>
+        <li><a href="<%= histories_path%>">Histories</a></li>
         <li><a href="#">Link2</a></li>
       </ul>
-      <ul class="nav navbar-nav navbar-right">
+     <ul class="nav navbar-nav navbar-right">
+        <li><a href="#">Link</a></li>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-            <li class="divider"></li>
-            <li><a href="#">One more separated link</a></li>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+
+            <% if logged? %>
+              <%= current_user.email %>
+              <% else %>
+              Ingreso
+              <% end %>
+            <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <% if logged? %>
+            <li><a href="<%= session_path(current_user)%>" data-method='DELETE'>Cerrar sesión
+              <% else %>
+            <li><a href="<%= users_sign_in_path %>">Ingreso</a></li>
+            <li><a href="<%= users_sign_up_path %>">Registro</a></li>
+
+            <% end %>
+            </a></li>
           </ul>
         </li>
       </ul>
